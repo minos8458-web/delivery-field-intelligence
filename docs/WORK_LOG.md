@@ -18,3 +18,11 @@
 - Added validation metric dashboard.
 - Added JSON and CSV evidence export.
 - Kept real LLM provider and prompt evaluation work in the Claude handoff queue.
+
+## 2026-07-13 — MVP v0.3
+
+- Added PWA manifest and service worker shell caching.
+- Added refresh-safe unfinished capture draft recovery.
+- Added explicit field-validation session start/end logging.
+- Added mobile one-hand interaction adjustments and larger touch targets.
+- Preserved the deterministic parser boundary; real AI provider remains Claude-deferred.

@@ -1,0 +1,10 @@
+{
+  "name": "Delivery Field Intelligence",
+  "short_name": "DFI",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#071017",
+  "theme_color": "#071017",
+  "lang": "ko-KR",
+  "description": "현장 배송 경험을 구조화하고 재사용하는 실증용 필드 메모 시스템"
+}

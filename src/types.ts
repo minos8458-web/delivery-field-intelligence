@@ -65,3 +65,11 @@ export interface RetrievalFeedback {
   outcome: OperationalOutcome;
   recordedAt: string;
 }
+
+export interface ValidationSession {
+  id: string;
+  startedAt: string;
+  endedAt?: string;
+  noteCountAtStart: number;
+  noteCountAtEnd?: number;
+}

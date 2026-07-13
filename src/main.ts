@@ -1,6 +1,6 @@
 import './style.css';
 import { structureFieldMemory } from './fieldMemoryParser';
-import { clearAllValidationData, loadFeedback, loadMemories, saveFeedback, saveMemories } from './store';
+import { clearAllValidationData, loadCaptureDraft, loadFeedback, loadMemories, loadSessions, saveCaptureDraft, saveFeedback, saveMemories, saveSessions } from './store';
 import { buildValidationCsv, calculateValidationMetrics } from './validationMetrics';
 import type {
   DraftField,
@@ -10,6 +10,7 @@ import type {
   OperationalOutcome,
   RetrievalFeedback,
   StructuredDraft,
+  ValidationSession,
 } from './types';
 
 const TYPE_LABELS: Record<MemoryType, string> = {
@@ -37,6 +38,8 @@ const OUTCOME_LABELS: Record<OperationalOutcome, string> = {
 
 let memories = loadMemories();
 let feedback = loadFeedback();
+let sessions = loadSessions();
+let activeSession: ValidationSession | null = sessions.find((session) => !session.endedAt) ?? null;
 let currentDraft: StructuredDraft | null = null;
 let currentRawText = '';
 let captureStartedAt: number | null = null;
@@ -51,6 +54,10 @@ app.innerHTML = `
       <p class="eyebrow">DELIVERY FIELD INTELLIGENCE · MVP v0.2</p>
       <h1>기사의 경험을<br />현장 데이터로 바꾼다.</h1>
       <p class="hero-copy">현장 기억을 수집·구조화·재사용하고, 실제로 도움이 됐는지 측정하는 실증용 MVP입니다.</p>
+      <div class="session-strip">
+        <div><span class="session-label">FIELD SESSION</span><strong id="sessionStatus">세션 미시작</strong></div>
+        <button id="sessionButton" class="ghost-button session-button" type="button">실증 세션 시작</button>
+      </div>
     </header>
 
     <section class="panel capture-panel">
@@ -124,6 +131,8 @@ const statusText = document.querySelector<HTMLSpanElement>('#statusText')!;
 const metricGrid = document.querySelector<HTMLDivElement>('#metricGrid')!;
 const exportJsonButton = document.querySelector<HTMLButtonElement>('#exportJsonButton')!;
 const exportCsvButton = document.querySelector<HTMLButtonElement>('#exportCsvButton')!;
+const sessionStatus = document.querySelector<HTMLElement>('#sessionStatus')!;
+const sessionButton = document.querySelector<HTMLButtonElement>('#sessionButton')!;
 
 Object.entries(TYPE_LABELS).forEach(([value, label]) => {
   const option = document.createElement('option');
@@ -131,6 +140,17 @@ Object.entries(TYPE_LABELS).forEach(([value, label]) => {
   option.textContent = `${label} · ${value}`;
   typeInput.append(option);
 });
+
+function renderSession(): void {
+  if (!activeSession) {
+    sessionStatus.textContent = '세션 미시작';
+    sessionButton.textContent = '실증 세션 시작';
+    return;
+  }
+  const started = new Date(activeSession.startedAt);
+  sessionStatus.textContent = `${started.toLocaleDateString('ko-KR')} ${started.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' })} 시작`;
+  sessionButton.textContent = '실증 세션 종료';
+}
 
 function startCaptureClock(): void {
   if (captureStartedAt === null && rawText.value.trim()) captureStartedAt = Date.now();
@@ -236,7 +256,29 @@ function downloadText(filename: string, content: string, mimeType: string): void
   URL.revokeObjectURL(url);
 }
 
-rawText.addEventListener('input', startCaptureClock);
+rawText.value = loadCaptureDraft();
+if (rawText.value.trim()) {
+  captureStartedAt = Date.now();
+  statusText.textContent = '저장된 미완료 메모를 복구했습니다.';
+}
+
+rawText.addEventListener('input', () => {
+  startCaptureClock();
+  saveCaptureDraft(rawText.value);
+});
+
+sessionButton.addEventListener('click', () => {
+  if (!activeSession) {
+    activeSession = { id: crypto.randomUUID(), startedAt: new Date().toISOString(), noteCountAtStart: memories.length };
+    sessions = [activeSession, ...sessions];
+  } else {
+    const ended: ValidationSession = { ...activeSession, endedAt: new Date().toISOString(), noteCountAtEnd: memories.length };
+    sessions = sessions.map((session) => session.id === ended.id ? ended : session);
+    activeSession = null;
+  }
+  saveSessions(sessions);
+  renderSession();
+});
 
 structureButton.addEventListener('click', () => {
   try {
@@ -285,6 +327,7 @@ confirmButton.addEventListener('click', () => {
   captureStartedAt = null;
   structuredAt = null;
   rawText.value = '';
+  saveCaptureDraft('');
   draftPanel.classList.add('hidden');
   statusText.textContent = '확정 기억과 실증 로그를 로컬에 저장했습니다.';
   renderMemories(searchInput.value);
@@ -329,6 +372,7 @@ exportJsonButton.addEventListener('click', () => {
     memories,
     feedback,
     metrics: calculateValidationMetrics(memories, feedback),
+    sessions,
   };
   downloadText(`dfi-validation-${new Date().toISOString().slice(0, 10)}.json`, JSON.stringify(payload, null, 2), 'application/json');
 });
@@ -384,5 +428,14 @@ voiceButton.addEventListener('click', () => {
   recognition.start();
 });
 
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {
+      statusText.textContent = '오프라인 준비에 실패했습니다. 온라인 상태에서 다시 실행하세요.';
+    });
+  });
+}
+
 renderMemories();
 renderMetrics();
+renderSession();
