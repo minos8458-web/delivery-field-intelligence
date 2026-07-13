@@ -1,8 +1,8 @@
-# MVP Validation Plan v0.1
+# MVP Validation Plan v0.2
 
 ## Objective
 
-Determine whether structured field memory solves a repeated real-world problem for an active delivery worker before expanding the product.
+Determine whether structured field memory solves a repeated real-world problem for an active delivery worker and collect evidence that can survive later grant-plan review.
 
 ## Test period
 
@@ -12,29 +12,19 @@ Initial target: 2 to 4 weeks of real field use.
 
 Record only observations that the driver genuinely wants to remember later. Do not manufacture notes to increase sample size.
 
-## Metrics
+Do not store customer names, phone numbers, door codes, or unnecessary precise personal details.
 
-### Capture metrics
+## Automatically measured capture metrics
 
-- Number of field notes created
-- Median capture time
-- Percentage of notes abandoned before confirmation
-
-### Structuring metrics
-
+- Confirmed field-memory count
+- Capture start to user confirmation duration
+- Median measured capture duration
+- Fields changed between structured draft and user-confirmed record
 - Percentage of drafts accepted without correction
-- Fields most frequently corrected
-- Memory types most frequently selected
 
-### Retrieval metrics
+## Explicit reuse/outcome feedback
 
-- Number of searches
-- Percentage of searches returning a useful prior memory
-- Repeated locations with more than one confirmed memory
-
-### Outcome metrics
-
-For each memory that influences a real decision, record one of:
+When a prior field memory is actually consulted, the driver can record one outcome:
 
 - avoided re-entry
 - avoided unnecessary walking
@@ -42,7 +32,26 @@ For each memory that influences a real decision, record one of:
 - reduced search/recall time
 - changed delivery order
 - prevented repeated operational error
+- other useful effect
+- no impact
 
 ## Evidence standard
 
 Do not claim time or cost savings from intuition alone. Use before/after timing, repeated observations, or explicit incident logs where practical.
+
+A useful-feedback ratio is not equivalent to a time-saving percentage. Keep these claims separate.
+
+## Export
+
+The MVP exports local validation data as JSON and CSV. Before sharing externally, review and anonymize raw field notes and location text.
+
+## Minimum credible pre-application evidence target
+
+This is an internal target, not an official program requirement:
+
+1. 2–4 weeks of real founder use
+2. At least 30 genuine confirmed field memories
+3. At least 10 explicit reuse/outcome feedback events
+4. Correction burden understood by field
+5. One recurring operational decision with repeated evidence of improvement
+6. Privacy review of exported evidence

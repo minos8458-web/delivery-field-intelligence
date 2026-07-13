@@ -8,11 +8,11 @@ Delivery Field Intelligence (DFI)
 
 ## Current phase
 
-Phase 0/1 — problem framing, schema foundation, and single-loop prototype
+Phase 1 — field validation instrumentation
 
 ## Current milestone
 
-MVP v0.1: Capture → Structure Draft → Driver Confirm → Store → Search
+MVP v0.2: Capture → Structure Draft → Driver Confirm → Store → Reuse → Outcome Feedback → Export Evidence
 
 ## Current implementation state
 
@@ -23,12 +23,21 @@ MVP v0.1: Capture → Structure Draft → Driver Confirm → Store → Search
 - Driver confirmation gate
 - LocalStorage persistence
 - Search of confirmed memories
+- Capture-to-confirm duration measurement
+- Draft correction tracking
+- Operational outcome feedback
+- Validation dashboard
+- JSON and CSV evidence export
 
 ## Product invariant
 
-Unconfirmed AI output must never become trusted field knowledge automatically.
+Unconfirmed structured output must never become trusted field knowledge automatically.
 
-## Non-goals for MVP v0.1
+## Measurement invariant
+
+No efficiency claim should be made from intuition alone. Early claims require field logs, timing, repeated observations, or explicit outcome feedback.
+
+## Non-goals for MVP v0.2
 
 - Courier platform replacement
 - Coupang or other platform scraping
@@ -39,8 +48,8 @@ Unconfirmed AI output must never become trusted field knowledge automatically.
 
 ## Next engineering action
 
-Replace the deterministic structuring baseline behind a provider interface, then compare at least one real LLM structuring provider against the same schema and a fixed field-note evaluation set.
+Run the MVP with real anonymized founder field notes and inspect whether capture friction, correction burden, and useful recall can be measured reliably before adding a real AI provider.
 
 ## Claude-deferred work
 
-See `docs/CLAUDE_HANDOFF.md`. Do not expand those tasks during the current ChatGPT-only window unless explicitly reprioritized.
+See `docs/CLAUDE_HANDOFF.md`. Real AI provider implementation, evaluation-harness/prompt optimization, and mobile architecture decision remain deferred.
