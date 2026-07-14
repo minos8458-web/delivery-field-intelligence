@@ -49,15 +49,6 @@
 
 - Fixed `MainActivity.kt`: session start was gated only on `SYSTEM_ALERT_WINDOW`; `RECORD_AUDIO` was not checked before `startForegroundService`. Added `canStartSession(): String?` helper that gates on both required permissions with Korean-language blocking reason.
 - Classified permissions explicitly: `SYSTEM_ALERT_WINDOW` and `RECORD_AUDIO` are technically required (missing RECORD_AUDIO causes `SecurityException` on Android 14+ for `FOREGROUND_SERVICE_TYPE_MICROPHONE`); `POST_NOTIFICATIONS` is recommended but does not block service start.
-- Updated `docs/C4_ANDROID_FLOATING_CAPTURE_SPIKE.md` §5 to reflect corrected permission classification and `canStartSession` gate.
-- Removed accidental brace-literal empty directories from `android-spike/` workspace: `app/src/main/java/com/dfi/spike/{geometry,gesture,overlay,speech,log}` and `app/src/test/java/com/dfi/spike/{geometry,gesture}`.
-- Tests: 27/27 JVM tests pass (unchanged). No device/emulator validation performed. No Gradle build executed.
-- Refreshed manual-upload package: `dfi-c4-spike-package.zip`.
-
-## 2026-07-14 — C4 Permission Boundary Fix (narrow correction)
-
-- Fixed `MainActivity.kt`: session start was gated only on `SYSTEM_ALERT_WINDOW`; `RECORD_AUDIO` was not checked before `startForegroundService`. Added `canStartSession(): String?` helper that gates on both required permissions with Korean-language blocking reason.
-- Classified permissions explicitly: `SYSTEM_ALERT_WINDOW` and `RECORD_AUDIO` are technically required (missing RECORD_AUDIO causes `SecurityException` on Android 14+ for `FOREGROUND_SERVICE_TYPE_MICROPHONE`); `POST_NOTIFICATIONS` is recommended but does not block service start.
 - Removed two genuinely empty directories from workspace: `app/src/main/res/` and `gradle/wrapper/` (no Gradle wrapper or resource files are needed for the spike; the remaining Java package directories are required by Gradle namespace discovery).
 - Reran full JVM test suite: 27/27 pass. No test changes needed.
 - `docs/C4_ANDROID_FLOATING_CAPTURE_SPIKE.md` §5 already described the corrected permission classification accurately; no documentation change needed.
