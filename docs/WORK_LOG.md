@@ -26,3 +26,12 @@
 - Added explicit field-validation session start/end logging.
 - Added mobile one-hand interaction adjustments and larger touch targets.
 - Preserved the deterministic parser boundary; real AI provider remains Claude-deferred.
+
+## 2026-07-14 — C1 Mobile Architecture ADR
+
+- Created `docs/ADR_MOBILE_ARCHITECTURE_V1.md`.
+- Decision: Native Android / Kotlin (Compose in-app UI, foreground-service WindowManager overlay, Room + transactional outbox + WorkManager, SpeechRecognizer ko-KR, CameraX).
+- PWA continuation, React Native, Flutter, and two hybrid variants rejected with justification.
+- MVP v0.3 PWA remains the validation baseline until native capture-loop parity; PWA export format designated as the LocalStorage→Room migration bridge.
+- No source code changed. C2–C8 not started.
+- Next action: C4 Android floating-capture feasibility spike per ADR §24 step 1.
