@@ -129,3 +129,12 @@ Files changed:
 - `android-spike/app/src/test/java/com/dfi/spike/geometry/RadialGeometryTest.kt` — full rewrite. 17 geometry tests enforcing complete Criterion 6 contract (6 slots, uniform R, 60° spacing, bounds containment, non-overlap, nearest-menuCenter shift, anchor immutability, determinism, regression cases for Samsung Galaxy top-left and top-right corners).
 
 Tests: 29/29 pass (geometry 17, gesture 12). New APK required for real-device re-validation.
+
+## 2026-07-14 — Documentation: DFI_HAZARD_MEMORY_MODEL_V1 and DFI_DELIVERY_KNOWLEDGE_MODEL_V1
+
+Created two product/architecture design documents capturing founder-approved design decisions from post-C4 field discussion.
+
+- `docs/DFI_HAZARD_MEMORY_MODEL_V1.md` — Hazard Memory Loop, retrospective hazard reporting, Hazard Candidate Window, POINT_HAZARD/SEGMENT_HAZARD data shapes, evidence states (REPORTED/SUPPORTED/CONFIRMED/STALE/RETIRED), post-passage one-action factual verification, warning timing direction, Road Condition Summary, alert suppression, Hazard Identity and clustering, Road Segment Risk History, multidimensional reporter-reliability model, independent evidence principle, speed hump / road infrastructure distinction, and future incident/public-safety boundaries. All sections labeled as APPROVED PRINCIPLE, DESIGN DIRECTION, UNVALIDATED HYPOTHESIS, or FUTURE DIRECTION.
+- `docs/DFI_DELIVERY_KNOWLEDGE_MODEL_V1.md` — Explicit delivery start, Personal Delivery Baseline, automatic context inference states, context-sensitive interaction budget, three-layer data model (Raw Trace / Personal Delivery Knowledge / Handoff Package), Delivery Knowledge Model (DKM), fact/observation/personal-pattern provenance distinction, Knowledge Handoff design, Handoff authorization, today's work vs. historical knowledge boundary, substitute driver experience principles, user data ownership principle, shared vs. private knowledge boundary, and future validation questions.
+
+No source code changed. No tests changed. No PWA or Android spike modified. C4 acceptance status unchanged. C5 not begun.
