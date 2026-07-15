@@ -138,3 +138,11 @@ Created two product/architecture design documents capturing founder-approved des
 - `docs/DFI_DELIVERY_KNOWLEDGE_MODEL_V1.md` — Explicit delivery start, Personal Delivery Baseline, automatic context inference states, context-sensitive interaction budget, three-layer data model (Raw Trace / Personal Delivery Knowledge / Handoff Package), Delivery Knowledge Model (DKM), fact/observation/personal-pattern provenance distinction, Knowledge Handoff design, Handoff authorization, today's work vs. historical knowledge boundary, substitute driver experience principles, user data ownership principle, shared vs. private knowledge boundary, and future validation questions.
 
 No source code changed. No tests changed. No PWA or Android spike modified. C4 acceptance status unchanged. C5 not begun.
+
+## 2026-07-16 — Documentation: DFI_VALIDATION_EXPORT_CONTRACT_V1
+
+Created `docs/DFI_VALIDATION_EXPORT_CONTRACT_V1.md` — field validation export package specification for long-duration founder delivery use.
+
+Document covers 19 sections (A–S): export goals and primary validation questions; package structure and file list with merge/split rationale; stable identifier hierarchy (export_id, session_id, event_id, hazard_id, knowledge_item_id, etc.); UTC + local + monotonic session time model; seven provenance levels; user correction schema with recurrence tracking; interaction burden fields including movement_context; full Hazard Memory Loop export mapping (hazard_reports.csv, hazard_verifications.csv, hazard_state_transitions.csv) with YES/NO/NO_RESPONSE and independent_evidence_count distinctions; Delivery Knowledge validation mapping; Delivery Terrain semantic compression direction (DIRECTION/HYPOTHESIS labeled); Carrier Context Overlay direction; three privacy levels (LEVEL_1_SUMMARY / LEVEL_2_ANALYSIS / LEVEL_3_DEEP_DIVE); immutable snapshot via manifest.json + sha256_checksums.txt; validation_summary.html as primary human report format; per-session DFI_SESSION_EVIDENCE_<SESSION_ID>_V1.zip deep-dive package; missing-data honesty requirements; schema evolution direction; validation metrics boundary; and 10 unresolved pre-field-trial questions.
+
+No source code changed. No tests changed. C4 acceptance status unchanged. C5 not begun.
