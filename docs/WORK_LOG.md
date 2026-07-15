@@ -146,3 +146,14 @@ Created `docs/DFI_VALIDATION_EXPORT_CONTRACT_V1.md` — field validation export 
 Document covers 19 sections (A–S): export goals and primary validation questions; package structure and file list with merge/split rationale; stable identifier hierarchy (export_id, session_id, event_id, hazard_id, knowledge_item_id, etc.); UTC + local + monotonic session time model; seven provenance levels; user correction schema with recurrence tracking; interaction burden fields including movement_context; full Hazard Memory Loop export mapping (hazard_reports.csv, hazard_verifications.csv, hazard_state_transitions.csv) with YES/NO/NO_RESPONSE and independent_evidence_count distinctions; Delivery Knowledge validation mapping; Delivery Terrain semantic compression direction (DIRECTION/HYPOTHESIS labeled); Carrier Context Overlay direction; three privacy levels (LEVEL_1_SUMMARY / LEVEL_2_ANALYSIS / LEVEL_3_DEEP_DIVE); immutable snapshot via manifest.json + sha256_checksums.txt; validation_summary.html as primary human report format; per-session DFI_SESSION_EVIDENCE_<SESSION_ID>_V1.zip deep-dive package; missing-data honesty requirements; schema evolution direction; validation metrics boundary; and 10 unresolved pre-field-trial questions.
 
 No source code changed. No tests changed. C4 acceptance status unchanged. C5 not begun.
+
+## 2026-07-16 — Documentation: DFI_DECISION_PATCH_QUEUE_V1
+
+Created `docs/DFI_DECISION_PATCH_QUEUE_V1.md` — patch queue preserving founder-approved design directions that emerged after formal documents were written.
+
+15 queue items across three sections:
+- Section A (Hazard Memory): HM-PATCH-001 Wheel-Contact Corridor (DOC_PATCH/QUEUED), HM-PATCH-002 Pothole Growth Signal (DOC_PATCH/QUEUED), HM-PATCH-003 Avoidance Behavior Relevance (VALIDATION_HYPOTHESIS/REQUIRES_VALIDATION), HM-PATCH-004 Traffic Signal Operating State (DOC_PATCH/QUEUED), HM-PATCH-005 Recency×Recurrence for Stateful Infrastructure (DOC_PATCH/QUEUED).
+- Section B (Delivery Knowledge): DKM-PATCH-001 Delivery Terrain (DOC_PATCH/QUEUED), DKM-PATCH-002 Semantic Zoom (VALIDATION_HYPOTHESIS/REQUIRES_VALIDATION), DKM-PATCH-003 Delivery Behavior Nodes provenance (DOC_PATCH/QUEUED), DKM-PATCH-004 Carrier Context Overlay (DOC_PATCH/QUEUED), DKM-PATCH-005 Photo Evidence Reuse (DOC_PATCH/QUEUED).
+- Section C (Android UI): UI-PATCH-001 Opacity slider (CODE_PATCH/QUEUED), UI-PATCH-002 Size slider (CODE_PATCH/QUEUED), UI-PATCH-003 Live Preview (CODE_PATCH/QUEUED), UI-PATCH-004 Hexagonal Radial Geometry device revalidation (CODE_PATCH/READY_FOR_CODE_BATCH), UI-PATCH-005 Interaction sound (POLISH_BACKLOG/QUEUED).
+
+No source code changed. No tests changed. No APK built. C4 acceptance status unchanged. C5 not begun.
